@@ -11,25 +11,33 @@ class Student:
 
 class Group:
     def __init__(self, name: str):
-        self.name = name
-        self.members = []
+        self.name: str = name
+        self.members: list[Student] = []
 
     def add(self, student: Student):
-        # Добавить добавление студента в группу и добавление группы в студента
-        pass
+        self.members.append(student)
+        student.group = self
 
     def remove(self, id: int):
-        # Добавить удаление студента из группы
         for member in self.members:
-            pass
+            if member.id == id:
+                member.group = None
+                self.members.remove(member)
+                break
 
     def msg(self, text: str, src: Student = None):
         if src == None:
             src = self
         for member in self.members:
-            print(f"{src.name} -> {member.name}: {text}")
+            if not member.id == src.id:
+                print(f"{src.name} -> {member.name}: {text}")
 
 
 Dima = Student("Dima", 1)
 Anton = Student("Anton", 2)
 group = Group("B2912")
+
+group.add(Dima)
+group.add(Anton)
+
+Dima.msg_to_group("Privet vsem")
