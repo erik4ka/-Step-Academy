@@ -1,0 +1,11 @@
+class Class1:
+    def __init__(self):
+        self.class2 = Class2()
+
+class Class2:
+    def __init__(self):
+        self.class3 = Class3()
+
+class Class3:
+    def __init__(self):
+        self.name = "Class3"
